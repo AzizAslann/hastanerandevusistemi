@@ -1,0 +1,44 @@
+﻿@model IEnumerable<hastanerandevusistemi.Models.HastaneClass>
+
+@{
+    ViewData["Title"] = "Hastaneler";
+}
+
+<h1>Hastaneler</h1>
+
+<p>
+    <a asp-action="Create">Hastane Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>İl</th>
+            <th>İlçe</th>
+            <th>İsim</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hastid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hastil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hastilce)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hastisim)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

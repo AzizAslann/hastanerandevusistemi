@@ -1,7 +1,20 @@
+using hastanerandevusistemi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ConnectionStringClass>(options =>
+{
+    string connectionString = builder.Configuration.GetConnectionString("MyConnection");
+    options.UseSqlServer(connectionString);
+});
+
 
 var app = builder.Build();
 
@@ -19,6 +32,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
