@@ -22,6 +22,11 @@ namespace hastanerandevusistemi.Controllers
         {
             return View();
         }
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
