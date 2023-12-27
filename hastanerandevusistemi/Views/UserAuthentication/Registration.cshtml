@@ -1,0 +1,61 @@
+﻿@model hastanerandevusistemi.Models.DTO.RegistrationModel
+@{
+    Layout = null;
+}
+
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+@Html.ValidationSummary()
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center-block">
+            <h3>Kayıt Olma Sayfası</h3>
+            <form asp-action="Registration" method="post">
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" class="form-control" asp-for="Name"/>
+                    <span class="text-danger"  asp-validation-for="Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" class="form-control" asp-for="Username" />
+                    <span class="text-danger" asp-validation-for="Username"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Şifre (eg. John@123)</label>
+                    <input type="password" class="form-control" asp-for="Password" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Şifreni Onayla</label>
+                    <input type="password" class="form-control" asp-for="PasswordConfirm" />
+                    <span class="text-danger" asp-validation-for="PasswordConfirm"></span>
+
+                </div>
+
+               
+                
+                @if (TempData["msg"] != null)
+                {
+                    <div class="form-group">
+                       <span class="text-info">@TempData["msg"]</span>
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-info">Kayıt Ol</button>
+                <a class="btn btn-primary" href="/UserAuthentication/Login">Giriş Yap</a>
+            </form>
+        </div>
+    </div>
+</div>
