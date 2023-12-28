@@ -5,24 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Hastaneler</h1>
+<a class="btn btn-primary" asp-action="Create" role="button">Yeni Hastane Ekle</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.hastil)
+                İl
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hastilce)
+                İlçe
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hastisim)
+                Hastane İsmi
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,11 +34,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.hastisim)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.hastid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.hastid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.hastid">Delete</a>
-            </td>
+           <td>
+              <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.hastid" role="button">Düzenle</a>
+              <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.hastid" role="button">Sil</a>
+              <a class="btn btn-info" asp-action="Details" asp-route-id="@item.hastid" role="button">İncele</a>
+@*            <a asp-action="Edit" asp-route-id="@item.hastid">Düzenle</a> |
+              <a asp-action="Details" asp-route-id="@item.hastid">İncele</a> |
+              <a asp-action="Delete" asp-route-id="@item.hastid">Sil</a> *@
+            </td> 
         </tr>
 }
     </tbody>

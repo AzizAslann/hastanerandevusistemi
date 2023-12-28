@@ -6,72 +6,58 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-    <style>
-        form {
-            border: 3px solid #f1f1f1;
-            width:60%;
-            margin:auto;
-            margin-top:10%;
-        }
-        input[type=text],input[type=password]{
-            width:100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        button{
-            background-color: blue;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        container{
-            padding: 16px;
-        }
-        msg{
-            padding: 0px;
-        }
-        err{
-            color:red;
-        }
-    </style>
-</head>
-<body>
-     <form asp-action="Login"method="post">
-        <div class="container">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width" />
+        <title>Giriş Ekranı</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
 
-            <label asp-for="Username">Kullanıcı Adı</label>
-            <input type="text" asp-for="Username"/>
-            <div class="msg">
-                <span class="err" asp-validation-for="Username"></span>
-            </div>
+    <body>
+        <div class="wrapper">
+            <form asp-action="Login" method="post">
+                <h1>Giriş Yap</h1>
 
-            <label asp-for="Password">Şifre</label>
-            <input type="password" asp-for="Password" />
-            <div class="msg">
-                <span class="err" asp-validation-for="Password"></span>
-            </div>
-
-            @if (TempData["msg"]!=null)
-            {
-                <div class="msg">
-                    <span class="err">@TempData["msg"]</span>
+                <div class="input-box">
+                    <input type="text" asp-for="Username" placeholder="Kullanıcı Adı" required>
+                <i class='bx bxs-user'></i>
                 </div>
-            }
+                <div class="msg">
+                    <span class="err" asp-validation-for="Username"></span>
+                </div>
 
-            <button type="submit">Giriş Yap</button>
-            <a href="/UserAuthentication/Registration">Kayıt Ol</a>
 
+                <div class="input-box">
+                    <input type="password" asp-for="Password" placeholder="Şifre" required>
+                <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="msg">
+                    <span class="err" asp-validation-for="Password"></span>
+                </div>
+
+              @*   <div class="remember-forgot">
+                    <label><input type="checkbox">Hatırla Beni!</label>
+                    <a href="#">Şifremi Unuttum!</a>
+                </div> *@
+
+                @if (TempData["msg"] != null)
+                {
+                  <div class="msg">
+                    <span class="err">@TempData["msg"]</span>
+                  </div>
+                }
+
+                <button type="submit" class="btn">Giriş Yap</button>
+
+                <div class="register-link">
+                <p>Hesabınız yok mu?<a href="/UserAuthentication/Registration"> Kayıt Ol</a></p>
+                </div>
+            </form>
         </div>
-     </form>
 
-</body>
+    </body>
 </html>
+
+
