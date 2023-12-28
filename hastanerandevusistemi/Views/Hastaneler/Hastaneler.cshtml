@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<div style="margin-top:125px;">
 <h1>Hastaneler</h1>
 <a class="btn btn-primary" asp-action="Create" role="button">Yeni Hastane Ekle</a>
 
@@ -38,11 +40,9 @@
               <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.hastid" role="button">Düzenle</a>
               <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.hastid" role="button">Sil</a>
               <a class="btn btn-info" asp-action="Details" asp-route-id="@item.hastid" role="button">İncele</a>
-@*            <a asp-action="Edit" asp-route-id="@item.hastid">Düzenle</a> |
-              <a asp-action="Details" asp-route-id="@item.hastid">İncele</a> |
-              <a asp-action="Delete" asp-route-id="@item.hastid">Sil</a> *@
             </td> 
         </tr>
 }
     </tbody>
 </table>
+</div>
