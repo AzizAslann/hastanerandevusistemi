@@ -1,5 +1,25 @@
-﻿@* @{
+﻿<link rel="stylesheet" href="~/css/styledashboard.css" />
+
+<section class="container" style="margin-top: 150px" > 
+    <div class="slider-wrapper">
+        <div class="slider">
+            <img id="slide-1" src="https://cdn.pixabay.com/photo/2021/02/19/04/00/doctor-6029164_960_720.png"
+            alt="resim1"/>
+            <img id="slide-2" src="https://static.vecteezy.com/system/resources/previews/001/890/904/non_2x/female-and-male-nurse-and-doctors-with-uniforms-and-masks-design-free-vector.jpg"
+            alt="resim2" />
+            <img id="slide-3" src="https://img.freepik.com/premium-photo/cartoon-illustration-doctors-hospital-room_938529-1177.jpg"
+                 alt="resim3" />
+        </div>
+        <div class="slider-nav">
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+            <a href="#slide-3"></a>
+        </div>
+    </div>
+</section>
+
+
+@* @{
     string username = User.Identity.Name;
 }
-
 Welcome @username *@

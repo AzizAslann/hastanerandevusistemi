@@ -10,6 +10,14 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <link rel="stylesheet" href="/css/anastyle.css" />
+    <style>
+        /* CSS stilleri burada */
+
+        /* Ek bir stiller ekleyebilirsiniz */
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+    </style>
 
 </head>
 <body>
@@ -36,9 +44,27 @@
     <div class="content">
         @RenderBody()
     </div>
-
     @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+    // JavaScript kodu burada
+    var lastScrollTop = 0;
+
+    window.addEventListener("scroll", function() {
+    var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+    // Aşağı kaydırılıyorsa, header'ı gizle
+    document.querySelector(".header").classList.add("hidden");
+    } else {
+    // Yukarı kaydırılıyorsa, header'ı göster
+    document.querySelector(".header").classList.remove("hidden");
+    }
+
+    lastScrollTop = currentScrollTop;
+    });
+    </script>
 </body>
 
 </html>
