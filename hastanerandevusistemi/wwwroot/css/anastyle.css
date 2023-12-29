@@ -9,9 +9,10 @@
 
 body {
     min-height: 100vh;
-    background: url(https://w.wallhaven.cc/full/9d/wallhaven-9dryjx.png) no-repeat;
+    background: url(https://w.wallhaven.cc/full/rr/wallhaven-rrpogm.png) no-repeat;
     background-size: cover;
     background-position: center;
+
 }
 
 .header{
@@ -22,21 +23,42 @@ body {
     height:15%;
     padding:20px 100px;
     background:transparent;
-    backdrop-filter:blur(70px);
+    backdrop-filter:blur(0px);
     display:flex;
     justify-content:space-between;
     align-items:center;
     z-index:100;
 }
 
-
 .logo{
     font-size:32px;
     color:#fff;
     text-decoration:none;
-    font-weight:700;
+    font-weight:300;
+    position:relative;
 }
-
+.logo:hover {
+     color: #fff;
+     text-decoration:none;
+}
+    .logo::after {
+        text-decoration:none;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-in-out;
+    }
+    .logo:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+        text-decoration:none;
+    }
 .navbar a{
     position:relative;
     font-size:18px;

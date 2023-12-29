@@ -12,9 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('https://w.wallhaven.cc/full/gp/wallhaven-gpv8e7.png') no-repeat;
-    background-size:cover;
-    background-position:center;
+    background: url(https://w.wallhaven.cc/full/rr/wallhaven-rrpogm.png) no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .wrapper {
