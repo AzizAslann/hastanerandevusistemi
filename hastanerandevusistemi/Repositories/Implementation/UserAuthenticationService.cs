@@ -19,6 +19,12 @@ namespace hastanerandevusistemi.Repositories.Implementation
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
+  
+        public async Task<string> GetLoggedInUserId()
+        {
+            var user = await userManager.GetUserAsync(signInManager.Context.User);
+            return user?.Id;
+        }
 
         public async Task<Status> LoginAsync(LoginModel model)
         {

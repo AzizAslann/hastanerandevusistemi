@@ -7,5 +7,7 @@ namespace hastanerandevusistemi.Repositories.Abstract
         Task<Status> LoginAsync(LoginModel model);
         Task<Status> RegistrationAsync(RegistrationModel model);
         Task LogoutAsync();
+
+        Task<string> GetLoggedInUserId();
     }
 }

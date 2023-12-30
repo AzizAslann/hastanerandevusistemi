@@ -8,6 +8,7 @@ namespace hastanerandevusistemi.Controllers
     public class UserAuthenticationController : Controller
     {
         private readonly IUserAuthenticationService _service;
+
         public UserAuthenticationController(IUserAuthenticationService service)
         {
             this._service = service;

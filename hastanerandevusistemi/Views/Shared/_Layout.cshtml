@@ -27,15 +27,13 @@
 
             @if (User.IsInRole("user"))
             {
-                <a href="/Dashboard/Display">Randevu Al</a>
-                <a href="">Randevularım</a>
-                <a href="">Profilim</a>
+                <a href="/Randevular/Create">Randevu Al</a>
+                <a href="/Randevular/Index">Randevularım</a>
             }
 
             @if (User.IsInRole("admin"))
             {
                 <a href="/Admin/Display">Admin Panel</a>
-                <a href="">Profilim</a>
             }
             <a href="/UserAuthentication/Logout">Çıkış Yap</a>
         </nav>

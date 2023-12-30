@@ -1,0 +1,77 @@
+﻿@model IEnumerable<hastanerandevusistemi.Models.Randevular>
+
+@{
+    ViewData["Title"] = "Randevularım";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .white-text {
+        color: white;
+    }
+
+    .button {
+        background-color: rgba(255, 255, 255, .1);
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Randevular</title>
+</head>
+<body style="margin-top:125px;">
+<p>
+    <a class="button" style="color:white" asp-action="Create">Randevu Al</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="color:white">
+                Klinik
+            </th>
+            <th style="color:white;">
+                Doktor
+            </th>
+            <th style="color:white;">
+                Tarih
+            </th>
+@*             <th style="color:white">
+                Kullanıcı
+            </th> *@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="white-text">
+                @Html.DisplayFor(modelItem => item.randklinik)
+            </td>
+            <td class="white-text">
+                @Html.DisplayFor(modelItem => item.randhekim)
+            </td>
+            <td class="white-text">
+                @Html.DisplayFor(modelItem => item.randtarih)
+            </td>
+@*             <td class="white-text">
+                @Html.DisplayFor(modelItem => item.randsahip)
+            </td> *@
+            <td>
+              <a class="button" asp-action="Details" asp-route-id="@item.randID" style="color:white;">İncele</a> <a style="color:white;">|</a>
+              <a class="button" asp-action="Delete" asp-route-id="@item.randID" style="color:white;">İptal Et</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

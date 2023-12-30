@@ -17,7 +17,6 @@ namespace hastanerandevusistemi.Models
         [Required(ErrorMessage = "Bu alan zorunludur.")]
         public string randhekim { get; set; }
 
-        [StringLength(200)]
         [Required(ErrorMessage = "Bu alan zorunludur.")]
         public DateTime randtarih { get; set; }
 
