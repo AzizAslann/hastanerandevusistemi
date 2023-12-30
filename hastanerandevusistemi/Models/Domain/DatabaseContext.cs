@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using hastanerandevusistemi.Models.DTO;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace hastanerandevusistemi.Models.Domain
@@ -7,7 +8,6 @@ namespace hastanerandevusistemi.Models.Domain
     {
         public DatabaseContext(DbContextOptions<DatabaseContext>options):base(options)
         {
-            
         }
     }
 }

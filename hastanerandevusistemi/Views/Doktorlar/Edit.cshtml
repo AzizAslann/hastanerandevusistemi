@@ -1,0 +1,59 @@
+﻿@model hastanerandevusistemi.Models.Doktorlar
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<style>
+    .button {
+        background-color: rgba(255, 255, 255, .1);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Doktor Düzenle</title>
+</head>
+<body style="margin-top:125px;">
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DoktorID" />
+            <div class="form-group">
+                <label style="color:white;" asp-for="klinik" class="control-label">Doktor Klinik</label>
+                <input asp-for="klinik" class="form-control" />
+                <span asp-validation-for="klinik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label style="color:white;" asp-for="isim" class="control-label">Doktor Ad Soyad</label>
+                <input asp-for="isim" class="form-control" />
+                <span asp-validation-for="isim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label style="color:white;" asp-for="durum" class="control-label">Doktor Durum</label>
+                <input asp-for="durum" class="form-control" />
+                <span asp-validation-for="durum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="button" /> <a style="color:white;">|</a>
+                <button class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

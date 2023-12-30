@@ -1,0 +1,61 @@
+﻿@model hastanerandevusistemi.Models.Doktorlar
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<style>
+    .button {
+        background-color: rgba(255, 255, 255, .1);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Doktoru Sil</title>
+</head>
+<body style="margin-top:125px;">
+
+<h3 style="color:white;">Bu doktoru silmek istediğinize emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2" style="color:white;">
+            Doktor Klinik
+        </dt>
+        <dd class = "col-sm-10" style="color:white;">
+            @Html.DisplayFor(model => model.klinik)
+        </dd>
+        <dt class = "col-sm-2" style="color:white;">
+           Doktor İsmi
+        </dt>
+        <dd class = "col-sm-10" style="color:white">
+            @Html.DisplayFor(model => model.isim)
+        </dd>
+        <dt class = "col-sm-2" style="color:white">
+            Doktor Durum
+        </dt>
+        <dd class = "col-sm-10" style="color:white;">
+            @Html.DisplayFor(model => model.durum)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DoktorID" />
+         <input type="submit" value="Doktoru Sil" class="button" /><a style="color:white;">|</a>
+         <button class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</button>
+    </form>
+</div>
+</body>
+</html>

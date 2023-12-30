@@ -5,9 +5,9 @@ namespace hastanerandevusistemi.Models
     public class ConnectionStringClass : DbContext
     {
         public ConnectionStringClass(DbContextOptions<ConnectionStringClass> options):base(options)
-        {
-            
+        {         
         }
-        public DbSet<HastaneClass> Hastaneler {  get; set; }
+        public DbSet<Doktorlar> Doktorlars { get; set; }
+        public DbSet<Randevular> Randevulars { get; set; }
     }
 }

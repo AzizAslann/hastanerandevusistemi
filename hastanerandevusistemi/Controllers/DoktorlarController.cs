@@ -9,87 +9,87 @@ using hastanerandevusistemi.Models;
 
 namespace hastanerandevusistemi.Controllers
 {
-    public class HastanelerController : Controller
+    public class DoktorlarController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public HastanelerController(ConnectionStringClass context)
+        public DoktorlarController(ConnectionStringClass context)
         {
             _context = context;
         }
 
-        // GET: Hastaneler
-        public async Task<IActionResult> Hastaneler()
+        // GET: Doktorlar
+        public async Task<IActionResult> Index()
         {
-              return _context.Hastaneler != null ? 
-                          View(await _context.Hastaneler.ToListAsync()) :
-                          Problem("Entity set 'ConnectionStringClass.Hastaneler'  is null.");
+              return _context.Doktorlars != null ? 
+                          View(await _context.Doktorlars.ToListAsync()) :
+                          Problem("Entity set 'ConnectionStringClass.Doktorlars'  is null.");
         }
 
-        // GET: Hastaneler/Details/5
+        // GET: Doktorlar/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Hastaneler == null)
+            if (id == null || _context.Doktorlars == null)
             {
                 return NotFound();
             }
 
-            var hastaneClass = await _context.Hastaneler
-                .FirstOrDefaultAsync(m => m.hastid == id);
-            if (hastaneClass == null)
+            var doktorlar = await _context.Doktorlars
+                .FirstOrDefaultAsync(m => m.DoktorID == id);
+            if (doktorlar == null)
             {
                 return NotFound();
             }
 
-            return View(hastaneClass);
+            return View(doktorlar);
         }
 
-        // GET: Hastaneler/Create
+        // GET: Doktorlar/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hastaneler/Create
+        // POST: Doktorlar/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("hastid,hastil,hastilce,hastisim")] HastaneClass hastaneClass)
+        public async Task<IActionResult> Create([Bind("DoktorID,klinik,isim,durum")] Doktorlar doktorlar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hastaneClass);
+                _context.Add(doktorlar);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Hastaneler));
+                return RedirectToAction(nameof(Index));
             }
-            return View(hastaneClass);
+            return View(doktorlar);
         }
 
-        // GET: Hastaneler/Edit/5
+        // GET: Doktorlar/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Hastaneler == null)
+            if (id == null || _context.Doktorlars == null)
             {
                 return NotFound();
             }
 
-            var hastaneClass = await _context.Hastaneler.FindAsync(id);
-            if (hastaneClass == null)
+            var doktorlar = await _context.Doktorlars.FindAsync(id);
+            if (doktorlar == null)
             {
                 return NotFound();
             }
-            return View(hastaneClass);
+            return View(doktorlar);
         }
 
-        // POST: Hastaneler/Edit/5
+        // POST: Doktorlar/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("hastid,hastil,hastilce,hastisim")] HastaneClass hastaneClass)
+        public async Task<IActionResult> Edit(int id, [Bind("DoktorID,klinik,isim,durum")] Doktorlar doktorlar)
         {
-            if (id != hastaneClass.hastid)
+            if (id != doktorlar.DoktorID)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace hastanerandevusistemi.Controllers
             {
                 try
                 {
-                    _context.Update(hastaneClass);
+                    _context.Update(doktorlar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HastaneClassExists(hastaneClass.hastid))
+                    if (!DoktorlarExists(doktorlar.DoktorID))
                     {
                         return NotFound();
                     }
@@ -112,51 +112,51 @@ namespace hastanerandevusistemi.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Hastaneler));
+                return RedirectToAction(nameof(Index));
             }
-            return View(hastaneClass);
+            return View(doktorlar);
         }
 
-        // GET: Hastaneler/Delete/5
+        // GET: Doktorlar/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Hastaneler == null)
+            if (id == null || _context.Doktorlars == null)
             {
                 return NotFound();
             }
 
-            var hastaneClass = await _context.Hastaneler
-                .FirstOrDefaultAsync(m => m.hastid == id);
-            if (hastaneClass == null)
+            var doktorlar = await _context.Doktorlars
+                .FirstOrDefaultAsync(m => m.DoktorID == id);
+            if (doktorlar == null)
             {
                 return NotFound();
             }
 
-            return View(hastaneClass);
+            return View(doktorlar);
         }
 
-        // POST: Hastaneler/Delete/5
+        // POST: Doktorlar/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Hastaneler == null)
+            if (_context.Doktorlars == null)
             {
-                return Problem("Entity set 'ConnectionStringClass.Hastaneler'  is null.");
+                return Problem("Entity set 'ConnectionStringClass.Doktorlars'  is null.");
             }
-            var hastaneClass = await _context.Hastaneler.FindAsync(id);
-            if (hastaneClass != null)
+            var doktorlar = await _context.Doktorlars.FindAsync(id);
+            if (doktorlar != null)
             {
-                _context.Hastaneler.Remove(hastaneClass);
+                _context.Doktorlars.Remove(doktorlar);
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Hastaneler));
+            return RedirectToAction(nameof(Index));
         }
 
-        private bool HastaneClassExists(int id)
+        private bool DoktorlarExists(int id)
         {
-          return (_context.Hastaneler?.Any(e => e.hastid == id)).GetValueOrDefault();
+          return (_context.Doktorlars?.Any(e => e.DoktorID == id)).GetValueOrDefault();
         }
     }
 }
