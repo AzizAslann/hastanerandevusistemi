@@ -31,9 +31,18 @@ namespace hastanerandevusistemi.Controllers
         // GET: Randevular
         public async Task<IActionResult> Index()
         {
-              return _context.Randevulars != null ? 
-                          View(await _context.Randevulars.ToListAsync()) :
-                          Problem("Entity set 'ConnectionStringClass.Randevulars'  is null.");
+            // Kullanıcının id'sini al
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // Kullanıcının id'sine ait randevuları getir
+            var userRandevulars = await _context.Randevulars
+                .Where(r => r.randsahip == userId)
+                .ToListAsync();
+
+            // Eğer kullanıcıya ait randevu varsa, View'a gönder
+            return userRandevulars != null
+                ? View(userRandevulars)
+                : Problem("Kullanıcıya ait randevu bulunamadı.");
         }
 
         // GET: Randevular/Details/5
