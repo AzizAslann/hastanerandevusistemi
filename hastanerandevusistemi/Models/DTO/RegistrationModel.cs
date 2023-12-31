@@ -21,7 +21,7 @@ namespace hastanerandevusistemi.Models.DTO
         [Required(ErrorMessage = "Bu alan zorunludur!")]
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
-        public string? Role { get; set; }
+        public string Role { get; set; }
 
     }
 }

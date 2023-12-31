@@ -96,6 +96,21 @@ namespace hastanerandevusistemi.Controllers
                 // Kullanıcı izni yok, giriş yapmış kullanıcıya ait bir randevu olmalı
                 return Forbid();
             }
+            // Aynı doktor, tarih ve saatte randevu olup olmadığını kontrol et
+            bool isDuplicate = await _context.Randevulars
+                .AnyAsync(r => r.randhekim == randevular.randhekim &&
+                               r.randtarih == randevular.randtarih);
+
+            if (isDuplicate)
+            {
+                // Aynı doktor, tarih ve saatte randevu bulunuyorsa kullanıcıya uyarı ver
+                ModelState.AddModelError(string.Empty, "Bu doktorun belirtilen tarih ve saatte başka bir randevusu zaten var.");
+                var klinikler = _context.Doktorlars.Select(d => d.klinik).Distinct().ToList();
+                ViewBag.Klinikler = new SelectList(klinikler);
+                var doktorlar = _context.Doktorlars.Select(f => f.isim).ToList();
+                ViewBag.Doktorlar = new SelectList(doktorlar);
+                return View(randevular);
+            }
 
             if (ModelState.IsValid)
             {
