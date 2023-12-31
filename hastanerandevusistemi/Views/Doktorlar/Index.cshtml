@@ -27,23 +27,23 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Doktorlar</title>
+    <title>@localizer["dok"]</title>
 </head>
 <body style="margin-top:125px;">
 <p>
-    <a class="button" style="color:white;" asp-action="Create">Doktor Ekle</a>
+    <a class="button" style="color:white;" asp-action="Create">@localizer["dokekle"]</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th style="color:white;">
-                Doktor Klinik
+                @localizer["doklinik"]
             </th>
                 <th style="color:white;">
-                Doktor İsim
+                @localizer["dokisim"]
             </th>
                 <th style="color:white;">
-                Doktor Durum
+                @localizer["durum"]
             </th>
             <th></th>
         </tr>
@@ -61,9 +61,9 @@
                 @Html.DisplayFor(modelItem => item.durum)
             </td>   
             <td>
-               <a class="button" asp-action="Edit" asp-route-id="@item.DoktorID" style="color:white;">Düzenle</a> <a style="color:white;">|</a>
-               <a class="button" asp-action="Details" asp-route-id="@item.DoktorID" style="color:white;">İncele</a> <a style="color:white;">|</a>
-               <a class="button" asp-action="Delete" asp-route-id="@item.DoktorID" style="color:white;">Sil</a>
+               <a class="button" asp-action="Edit" asp-route-id="@item.DoktorID" style="color:white;">@localizer["edit"]</a> <a style="color:white;">|</a>
+               <a class="button" asp-action="Details" asp-route-id="@item.DoktorID" style="color:white;">@localizer["inc"]</a> <a style="color:white;">|</a>
+               <a class="button" asp-action="Delete" asp-route-id="@item.DoktorID" style="color:white;">@localizer["sil"]</a>
             </td>
         </tr>
 }

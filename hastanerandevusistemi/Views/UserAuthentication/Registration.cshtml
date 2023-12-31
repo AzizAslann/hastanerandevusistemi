@@ -9,7 +9,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Kayıt Ol</title>
+        <title>@localizer["kayitol"]</title>
         <link rel="stylesheet" href="~/css/style1.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
@@ -17,42 +17,44 @@
     <body>
         <div class="wrapper">
         <form asp-action="Registration" method="post">
-            <h1>Kayıt Ol</h1>
+            <h1>@localizer["kay"]</h1>
 
                 <div class="input-box">
                     <div class="input-field">
-                        <input asp-for="Name" type="text" placeholder="Ad Soyad" required />
+                        <input asp-for="Name" type="text" placeholder="@localizer["adsoyad"]" required />
                         <i class='bx bxs-user'></i>
                     </div>
                 </div>
                 <div class="input-box">
                     <div class="input-field">
-                        <input asp-for="Username" type="text" placeholder="TC Kimlik Numaranız" required />
+                        <input asp-for="Username" type="text" placeholder="@localizer["tc"]" required />
                         <i class='bx bxs-user'></i>
                     </div>
                 </div>
             <div class="input-box">
                 <div class="input-field">
-                    <input asp-for="Email" type="email" placeholder="Email" required />
+                    <input asp-for="Email" type="email" placeholder="@localizer["mail"]" required />
                     <i class='bx bxs-envelope'></i>
                 </div>
             </div>
             <div class="input-box">
                 <div class="input-field">
-                    <input asp-for="Password" type="password" placeholder="Şifre" required />
+                    <input asp-for="Password" type="password" placeholder="@localizer["pass"]" required />
                     <i class='bx bxs-lock-alt'></i>
                 </div>           
             </div>
             <div class="input-box">
                 <div class="input-field">
-                    <input asp-for="PasswordConfirm" type="password" placeholder="Şifrenizi Onaylayın" required />
+                    <input asp-for="PasswordConfirm" type="password" placeholder="@localizer["passonay"]" required />
                     <i class='bx bxs-lock-alt'></i>
                 </div>
             </div>
 
-            <button type="submit" class="btn">Kayıt Ol</button>
+            <button type="submit" class="btn">@localizer["regis"]</button>
             <div class="register-link">
-            <p>Hesap oluşturdunuz mu?<a href="/UserAuthentication/Login"> Giriş Yap</a></p>
+            <p>@localizer["hesokey"]<a href="/UserAuthentication/Login"> @localizer["gir"]</a></p>
+                <a style="color:white;" asp-page="/Lang" asp-route-culture="en">EN</a>
+                <a style="color:white" asp-page="/Lang" asp-route-culture="tr">TR</a>
             </div>
 
             </form>

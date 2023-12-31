@@ -1,6 +1,6 @@
 ﻿@model hastanerandevusistemi.Models.Randevular
 @{
-    ViewData["Title"] = "Randevu Al";
+    ViewData["Title"] = localizer["del"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,7 +21,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Randevu Al</title>
+    <title>@localizer["randal"]</title>
 </head>
 <body style="margin-top:125px;">
 
@@ -49,13 +49,13 @@
                 <span asp-validation-for="randtarih" class="text-danger"></span>
             </div>
             <div class="form-group" style="display:none;">
-                <label class="control-label">Randevu Sahibi</label>
+                    <label class="control-label">@localizer["randsah"]</label>
                 <input asp-for="randsahip" class="form-control" readonly/>
                 <span asp-validation-for="randsahip" class="text-danger"></span>
             </div> 
             <div class="form-group">
-                    <input type="submit" value="Randevu Al" class="button" /><a style="color:white;">|</a>
-                    <buton class="button" onclick="window.location.href='/Randevular/Index'">Randevularım</buton>
+                    <input type="submit" value="@localizer["randeal"]" class="button" /><a style="color:white;">|</a>
+                    <buton class="button" onclick="window.location.href='/Randevular/Index'">@localizer["randvular"]</buton>
             </div>
         </form>
     </div>

@@ -23,7 +23,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Doktor Düzenle</title>
+    <title>@localizer["dokduz"]</title>
 </head>
 <body style="margin-top:125px;">
 
@@ -34,23 +34,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DoktorID" />
             <div class="form-group">
-                <label style="color:white;" asp-for="klinik" class="control-label">Doktor Klinik</label>
+                <label style="color:white;" asp-for="klinik" class="control-label">@localizer["doklinik"]</label>
                 <input asp-for="klinik" class="form-control" />
                 <span asp-validation-for="klinik" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label style="color:white;" asp-for="isim" class="control-label">Doktor Ad Soyad</label>
+                <label style="color:white;" asp-for="isim" class="control-label">@localizer["dokad"]</label>
                 <input asp-for="isim" class="form-control" />
                 <span asp-validation-for="isim" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label style="color:white;" asp-for="durum" class="control-label">Doktor Durum</label>
+                <label style="color:white;" asp-for="durum" class="control-label">@localizer["dokdurum"]</label>
                 <input asp-for="durum" class="form-control" />
                 <span asp-validation-for="durum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Güncelle" class="button" /> <a style="color:white;">|</a>
-                <button class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</button>
+                <input type="submit" value="@localizer["gunc"]" class="button" /> <a style="color:white;">|</a>
+                <button class="button" onclick="window.location.href='/Doktorlar/Index'">@localizer["geri"]</button>
             </div>
         </form>
     </div>

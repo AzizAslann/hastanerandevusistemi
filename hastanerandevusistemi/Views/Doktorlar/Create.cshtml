@@ -22,7 +22,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Yeni Doktor Ekle</title>
+    <title>@localizer["yenidokekle"]</title>
 </head>
 <body style="margin-top:125px;">
 <hr />
@@ -32,22 +32,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input placeholder="Doktor Klinik" asp-for="klinik" class="form-control" />
+                <input placeholder="@localizer["doklinik"]" asp-for="klinik" class="form-control" />
                 <span asp-validation-for="klinik" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input placeholder="Doktor Ad Soyad" asp-for="isim" class="form-control" />
+                <input placeholder="@localizer["dokadsoy"]" asp-for="isim" class="form-control" />
                 <span asp-validation-for="isim" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input placeholder="Doktor Durum" asp-for="durum" class="form-control" />
+                <input placeholder="@localizer["dokdur"]" asp-for="durum" class="form-control" />
                 <span asp-validation-for="durum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Doktoru Ekle" class="button" /> <a style="color:white;">|</a>
-                <buton class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</buton>
+                <input type="submit" value="@localizer["dokekle"]" class="button" /> <a style="color:white;">|</a>
+                <buton class="button" onclick="window.location.href='/Doktorlar/Index'">@localizer["geri"]</buton>
             </div>
         </form>
     </div>

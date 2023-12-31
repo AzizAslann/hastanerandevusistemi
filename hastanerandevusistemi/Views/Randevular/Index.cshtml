@@ -27,23 +27,23 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Randevular</title>
+    <title>@localizer["randlar"]</title>
 </head>
 <body style="margin-top:125px;">
 <p>
-    <a class="button" style="color:white" asp-action="Create">Randevu Al</a>
+    <a class="button" style="color:white" asp-action="Create">@localizer["randal"]</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th style="color:white">
-                Klinik
+                    @localizer["klinik"]
             </th>
             <th style="color:white;">
-                Doktor
+                    @localizer["dok"]
             </th>
             <th style="color:white;">
-                Tarih
+                    @localizer["date"]
             </th>
 @*             <th style="color:white">
                 Kullanıcı
@@ -66,8 +66,8 @@
                 @Html.DisplayFor(modelItem => item.randsahip)
             </td> *@
             <td>
-              <a class="button" asp-action="Details" asp-route-id="@item.randID" style="color:white;">İncele</a> <a style="color:white;">|</a>
-              <a class="button" asp-action="Delete" asp-route-id="@item.randID" style="color:white;">İptal Et</a>
+                        <a class="button" asp-action="Details" asp-route-id="@item.randID" style="color:white;">@localizer["inc"]</a> <a style="color:white;">|</a>
+                        <a class="button" asp-action="Delete" asp-route-id="@item.randID" style="color:white;">@localizer["iptal"]</a>
             </td>
         </tr>
 }

@@ -23,28 +23,27 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Doktor Detay</title>
+    <title>@localizer["dokdetay"]</title>
 </head>
 <body style="margin-top:125px;">
 
 <div>
-        <h4 style="color:white;">Doktorlar</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2" style="color:white;">
-            Doktor Klinik
+            @localizer["doklinik"]
         </dt>
         <dd class = "col-sm-10" style="color:white;">
             @Html.DisplayFor(model => model.klinik)
         </dd>
         <dt class = "col-sm-2" style="color:white;">
-            Doktor İsmi
+            @localizer["dokisim"]
         </dt>
         <dd class = "col-sm-10" style="color:white">
             @Html.DisplayFor(model => model.isim)
         </dd>
         <dt class = "col-sm-2" style="color:white;">
-           Doktur Durum
+            @localizer["dokdurum"]
         </dt>
         <dd class = "col-sm-10" style="color:white;">
             @Html.DisplayFor(model => model.durum)
@@ -52,8 +51,8 @@
     </dl>
 </div>
 <div>
-    <a class="button" style="color:white;" asp-action="Edit" asp-route-id="@Model?.DoktorID">Doktoru Bilgileri Güncelle</a> <a style="color:white;">|</a>
-    <button class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</button>
+    <a class="button" style="color:white;" asp-action="Edit" asp-route-id="@Model?.DoktorID">@localizer["guncel"]</a> <a style="color:white;">|</a>
+    <button class="button" onclick="window.location.href='/Doktorlar/Index'">@localizer["geri"]</button>
 </div>
 </body>
 </html>

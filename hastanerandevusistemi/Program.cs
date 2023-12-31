@@ -3,15 +3,20 @@ using hastanerandevusistemi.Models.Domain;
 using hastanerandevusistemi.Repositories.Abstract;
 using hastanerandevusistemi.Repositories.Implementation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddRazorPages()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddRazorPages();
 
 //Hastaneler Tablosu Ýçin Ekledim
 builder.Services.AddDbContext<ConnectionStringClass>(options =>
@@ -44,6 +49,16 @@ builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService
 
 
 var app = builder.Build();
+
+
+var supportedCultures = new[] { "en", "tr" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

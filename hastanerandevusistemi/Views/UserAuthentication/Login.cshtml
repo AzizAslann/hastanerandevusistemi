@@ -2,7 +2,6 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -10,7 +9,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width" />
-        <title>Giriş Ekranı</title>
+        <title>@localizer["title"]</title>
         <link rel="stylesheet" href="/css/style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
@@ -18,10 +17,10 @@
     <body>
         <div class="wrapper">
             <form asp-action="Login" method="post">
-                <h1>Giriş Yap</h1>
+                <h1>@localizer["login"]</h1>
 
                 <div class="input-box">
-                <input type="text" asp-for="Username" placeholder="TC Kimlik Numaranız" required>
+                <input type="text" asp-for="Username" placeholder="@localizer["tc"]" required>
                 <i class='bx bxs-user'></i>
                 </div>
                 <div class="msg">
@@ -30,7 +29,7 @@
 
 
                 <div class="input-box">
-                    <input type="password" asp-for="Password" placeholder="Şifre" required>
+                <input type="password" asp-for="Password" placeholder="@localizer["sifre"]" required>
                 <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="msg">
@@ -49,15 +48,23 @@
                   </div>
                 }
 
-                <button type="submit" class="btn">Giriş Yap</button>
+            <button type="submit" class="btn">@localizer["btn"]</button>
 
                 <div class="register-link">
-                <p>Hesabınız yok mu?<a href="/UserAuthentication/Registration"> Kayıt Ol</a></p>
+                <p>@localizer["hesapyok"]<a href="/UserAuthentication/Registration"> @localizer["register"]</a></p>
+
+
+                @* <a  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @Thread.CurrentThread.CurrentUICulture.Name
+                </a> *@
+                <a style="color:white;" asp-page="/Lang" asp-route-culture="en">EN</a>
+                <a style="color:white" asp-page="/Lang" asp-route-culture="tr">TR</a>
+
                 </div>
             </form>
         </div>
-
     </body>
+
 </html>
 
 
