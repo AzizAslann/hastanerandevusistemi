@@ -21,6 +21,12 @@ namespace hastanerandevusistemi.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> Index2()
+        {
+            return _context.Randevulars != null ?
+                        View(await _context.Randevulars.ToListAsync()) :
+                        Problem("Entity set 'ConnectionStringClass.Randevulars'  is null.");
+        }
 
         // GET: Randevular
         public async Task<IActionResult> Index()
@@ -51,8 +57,20 @@ namespace hastanerandevusistemi.Controllers
         // GET: Randevular/Create
         [Authorize]
         public IActionResult Create()
-        {       
-            return View();
+        {
+            var klinikler = _context.Doktorlars.Select(d=>d.klinik).Distinct().ToList();
+            ViewBag.Klinikler = new SelectList(klinikler);
+            var doktorlar = _context.Doktorlars.Select(f=>f.isim).ToList();
+            ViewBag.Doktorlar = new SelectList(doktorlar);
+
+
+            var randevuModel = new Randevular
+            {
+                // Giriş yapan kullanıcının id'sini otomatik olarak randsahip alanına atayalım
+                randsahip = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+
+            return View(randevuModel);
         }
 
         // POST: Randevular/Create

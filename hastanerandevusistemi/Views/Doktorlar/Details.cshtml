@@ -23,11 +23,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>İncele</title>
+    <title>Doktor Detay</title>
 </head>
 <body style="margin-top:125px;">
 
 <div>
+        <h4 style="color:white;">Doktorlar</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2" style="color:white;">
@@ -51,7 +52,7 @@
     </dl>
 </div>
 <div>
-    <a class="button" style="color:white;" asp-action="Edit" asp-route-id="@Model?.DoktorID">Doktoru Bilgileri Güncelle </a> <a style="color:white;">|</a>
+    <a class="button" style="color:white;" asp-action="Edit" asp-route-id="@Model?.DoktorID">Doktoru Bilgileri Güncelle</a> <a style="color:white;">|</a>
     <button class="button" onclick="window.location.href='/Doktorlar/Index'">Listeye Geri Dön</button>
 </div>
 </body>
