@@ -63,14 +63,37 @@ namespace hastanerandevusistemi.Controllers
             return View(randevular);
         }
 
+        [HttpGet]
+        public JsonResult GetDoktorlar(string klinik)
+        {
+            var doktorlar = _context.Doktorlars
+                .Where(d => d.durum == "Aktif" && d.klinik == klinik)
+                .Select(d => new SelectListItem
+                {
+                    Value = d.isim,
+                    Text = d.isim
+                })
+                .ToList();
+
+            return Json(doktorlar);
+        }
+
         // GET: Randevular/Create
         [Authorize]
         public IActionResult Create()
         {
             var klinikler = _context.Doktorlars.Select(d=>d.klinik).Distinct().ToList();
             ViewBag.Klinikler = new SelectList(klinikler);
-            var doktorlar = _context.Doktorlars.Select(f=>f.isim).ToList();
-            ViewBag.Doktorlar = new SelectList(doktorlar);
+
+            //var aktifdoktorlar =_context.Doktorlars.Where(p=>p.durum=="Aktif").ToList();
+
+            //var dropdownData = aktifdoktorlar.Select(doktor => new SelectListItem
+            //{
+            //    Value = doktor.DoktorID.ToString(),
+            //    Text=doktor.isim
+            //})
+            //    .ToList();
+            //ViewBag.DoktorlarDropdown = dropdownData;
 
 
             var randevuModel = new Randevular
@@ -96,6 +119,7 @@ namespace hastanerandevusistemi.Controllers
                 // Kullanıcı izni yok, giriş yapmış kullanıcıya ait bir randevu olmalı
                 return Forbid();
             }
+
             // Aynı doktor, tarih ve saatte randevu olup olmadığını kontrol et
             bool isDuplicate = await _context.Randevulars
                 .AnyAsync(r => r.randhekim == randevular.randhekim &&

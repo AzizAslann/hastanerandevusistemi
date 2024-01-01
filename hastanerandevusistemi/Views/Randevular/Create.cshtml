@@ -3,6 +3,36 @@
     ViewData["Title"] = localizer["del"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Klinik dropdown değiştikçe
+        $("#randklinik").change(function () {
+            var selectedKlinik = $(this).val();
+
+            // AJAX çağrısı ile doktorları al
+            $.ajax({
+                url: "/Randevular/GetDoktorlar", // GetDoktorlar adında bir action oluşturmanız gerekecek
+                type: "GET",
+                data: { klinik: selectedKlinik },
+                success: function (data) {
+                    // Gelen doktorları dropdown listesine ekle
+                    var doktorlarDropdown = $("#randhekim");
+                    doktorlarDropdown.empty();
+                    $.each(data, function (index, item) {
+                        doktorlarDropdown.append($('<option>', {
+                            value: item.value,
+                            text: item.text
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 
 <!DOCTYPE html>
 <style>
@@ -33,14 +63,14 @@
             <div class="form-group">
  @Html.DropDownList("randklinik", (SelectList)ViewBag.Klinikler, "Klinik Seçin", new { @class = "form-control" })
 
-@*                 <label class="control-label"></label>
-            <input asp-for="randklinik" class="form-control"/>  *@
                 <span asp-validation-for="randklinik" class="text-danger"></span>
             </div>
             <div class="form-group">
- @Html.DropDownList("randhekim", (SelectList)ViewBag.Doktorlar, "Doktor Seçin", new { @class = "form-control" })
-@*                 <label class="control-label"></label>
-                <input asp-for="randhekim" class="form-control"/> *@
+                    @{
+                        var doktorlarDropdown = ViewBag.DoktorlarDropdown as List<SelectListItem>;
+                        <select asp-for="randhekim" asp-items="doktorlarDropdown"></select>
+                    }
+@*  @Html.DropDownList("randhekim", (SelectList)ViewBag.Doktorlar, "Doktor Seçin", new { @class = "form-control" }) *@
                 <span asp-validation-for="randhekim" class="text-danger"></span>
             </div>
             <div class="form-group">
