@@ -118,24 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="date" xml:space="preserve">
-    <value>Tarih</value>
+    <value>DateTime</value>
   </data>
   <data name="del" xml:space="preserve">
-    <value>Randevu İptal</value>
+    <value>Cancel Appointment</value>
   </data>
   <data name="doc" xml:space="preserve">
-    <value>Doktor</value>
+    <value>Doctor</value>
   </data>
   <data name="geri" xml:space="preserve">
-    <value>Listeye Geri Dön</value>
+    <value>Back To List</value>
   </data>
   <data name="iptal" xml:space="preserve">
-    <value>Randevuyu İptal Et</value>
+    <value>Cancel Appointment</value>
   </data>
   <data name="klinik" xml:space="preserve">
-    <value>Klinik</value>
+    <value>Clinic</value>
+  </data>
+  <data name="saat" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="sahip" xml:space="preserve">
+    <value>Patient ID</value>
   </data>
   <data name="soru" xml:space="preserve">
-    <value>Bu randevuyu iptal etmek istediğinize emin misiniz?</value>
+    <value>Do you want to cancel this appointment?</value>
   </data>
 </root>

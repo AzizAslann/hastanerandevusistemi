@@ -47,6 +47,12 @@ namespace hastanerandevusistemi.Controllers
         // GET: Doktorlar/Create
         public IActionResult Create()
         {
+            var durumlar = new List<string>
+            {
+                "Aktif","Pasif"
+            };
+
+            ViewBag.Durumlar = new SelectList(durumlar);
             return View();
         }
 
@@ -69,6 +75,13 @@ namespace hastanerandevusistemi.Controllers
         // GET: Doktorlar/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var durumlar = new List<string>
+            {
+                "Aktif","Pasif"
+            };
+
+            ViewBag.Durumlar = new SelectList(durumlar);
+
             if (id == null || _context.Doktorlars == null)
             {
                 return NotFound();

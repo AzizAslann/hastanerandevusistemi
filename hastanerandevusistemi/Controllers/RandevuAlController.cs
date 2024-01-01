@@ -20,6 +20,40 @@ namespace hastanerandevusistemi.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> Delete2(int? id)
+        {
+            if (id == null || _context.randevuAls == null)
+            {
+                return NotFound();
+            }
+
+            var randevuAl = await _context.randevuAls
+                .FirstOrDefaultAsync(m => m.randID == id);
+            if (randevuAl == null)
+            {
+                return NotFound();
+            }
+
+            return View(randevuAl);
+        }
+        // POST: RandevuAl/Delete/5
+        [HttpPost, ActionName("Delete2")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed2(int id)
+        {
+            if (_context.randevuAls == null)
+            {
+                return Problem("Entity set 'ConnectionStringClass.randevuAls'  is null.");
+            }
+            var randevuAl = await _context.randevuAls.FindAsync(id);
+            if (randevuAl != null)
+            {
+                _context.randevuAls.Remove(randevuAl);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index1));
+        }
         public async Task<IActionResult> Index1()
         {
             return _context.randevuAls != null ?
@@ -80,20 +114,24 @@ namespace hastanerandevusistemi.Controllers
         [Authorize]
         // GET: RandevuAl/Create
         public IActionResult Create()
-        {
+        {  
+            // Saatleri burada tanımladım.
+            var saatler = new List<string>
+            {
+                "09:00", "09:15","09:30","09:45",
+                "10:00", "10:15","10:30","10:45",
+                "11:00", "11:15","11:30","11:45",
+                "13:00", "13:15","13:30","13:45",
+                "14:00", "14:15","14:30","14:45",
+                "15:00", "15:15","15:30","15:45",
+                "16:00", "16:15","16:30","16:45"
+            };
+
+            ViewBag.Saatler = new SelectList(saatler);
+
+            //doktor isimlerini getiriyoruz
             var klinikler = _context.Doktorlars.Select(d => d.klinik).Distinct().ToList();
             ViewBag.Klinikler = new SelectList(klinikler);
-
-            //var aktifdoktorlar =_context.Doktorlars.Where(p=>p.durum=="Aktif").ToList();
-
-            //var dropdownData = aktifdoktorlar.Select(doktor => new SelectListItem
-            //{
-            //    Value = doktor.DoktorID.ToString(),
-            //    Text=doktor.isim
-            //})
-            //    .ToList();
-            //ViewBag.DoktorlarDropdown = dropdownData;
-
 
             var randevuModel = new RandevuAl
             {

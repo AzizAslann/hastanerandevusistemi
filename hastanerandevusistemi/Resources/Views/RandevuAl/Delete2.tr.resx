@@ -117,10 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="del" xml:space="preserve">
+    <value>Randevu İptal</value>
+  </data>
+  <data name="doc" xml:space="preserve">
+    <value>Doktor</value>
+  </data>
   <data name="geri" xml:space="preserve">
     <value>Listeye Geri Dön</value>
   </data>
-  <data name="gunc" xml:space="preserve">
-    <value>Güncelle</value>
+  <data name="iptal" xml:space="preserve">
+    <value>Randevuyu İptal Et</value>
+  </data>
+  <data name="klinik" xml:space="preserve">
+    <value>Klinik</value>
+  </data>
+  <data name="saat" xml:space="preserve">
+    <value>Saat</value>
+  </data>
+  <data name="sahip" xml:space="preserve">
+    <value>Hasta ID</value>
+  </data>
+  <data name="soru" xml:space="preserve">
+    <value>Bu randevuyu iptal etmek istediğinize emin misiniz?</value>
   </data>
 </root>
