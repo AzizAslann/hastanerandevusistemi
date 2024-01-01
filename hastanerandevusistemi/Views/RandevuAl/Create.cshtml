@@ -68,7 +68,9 @@
             <div class="form-group">
                     @{
                         var doktorlarDropdown = ViewBag.DoktorlarDropdown as List<SelectListItem>;
-                        <select asp-for="randhekim" asp-items="doktorlarDropdown"></select>
+                        <select asp-for="randhekim" asp-items="doktorlarDropdown">
+                            <option disabled selected>Lütfen bir klinik seçinV</option>
+                        </select>
                     }
                 <span asp-validation-for="randhekim" class="text-danger"></span>
             </div>
