@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hastanerandevusistemi.Models;
 
@@ -11,9 +12,10 @@ using hastanerandevusistemi.Models;
 namespace hastanerandevusistemi.Migrations.ConnectionStringClassMigrations
 {
     [DbContext(typeof(ConnectionStringClass))]
-    partial class ConnectionStringClassModelSnapshot : ModelSnapshot
+    [Migration("20240101122040_RandevuAls")]
+    partial class RandevuAls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
-﻿@model hastanerandevusistemi.Models.Randevular
+﻿@model hastanerandevusistemi.Models.RandevuAl
+
 @{
     ViewData["Title"] = localizer["del"];
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +13,7 @@
 
             // AJAX çağrısı ile doktorları al
             $.ajax({
-                url: "/Randevular/GetDoktorlar", // GetDoktorlar adında bir action oluşturmanız gerekecek
+                url: "/RandevuAl/GetDoktorlar", // GetDoktorlar adında bir action oluşturmanız gerekecek
                 type: "GET",
                 data: { klinik: selectedKlinik },
                 success: function (data) {
@@ -33,7 +34,6 @@
         });
     });
 </script>
-
 <!DOCTYPE html>
 <style>
     .button {
@@ -61,7 +61,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
- @Html.DropDownList("randklinik", (SelectList)ViewBag.Klinikler, "Klinik Seçin", new { @class = "form-control" })
+@Html.DropDownList("randklinik", (SelectList)ViewBag.Klinikler, "Klinik Seçin", new { @class = "form-control" })
                 <span asp-validation-for="randklinik" class="text-danger"></span>
             </div>
 
@@ -70,7 +70,6 @@
                         var doktorlarDropdown = ViewBag.DoktorlarDropdown as List<SelectListItem>;
                         <select asp-for="randhekim" asp-items="doktorlarDropdown"></select>
                     }
-@*  @Html.DropDownList("randhekim", (SelectList)ViewBag.Doktorlar, "Doktor Seçin", new { @class = "form-control" }) *@
                 <span asp-validation-for="randhekim" class="text-danger"></span>
             </div>
 
@@ -80,19 +79,24 @@
                 <span asp-validation-for="randtarih" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input asp-for="randsaat" class="form-control" />
+                <span asp-validation-for="randsaat" class="text-danger"></span>
+            </div>
+
             <div class="form-group" style="display:none;">
                     <label class="control-label">@localizer["randsah"]</label>
                 <input asp-for="randsahip" class="form-control" readonly/>
                 <span asp-validation-for="randsahip" class="text-danger"></span>
-            </div> 
+            </div>
 
             <div class="form-group">
 <input type="submit" value="@localizer["randeal"]" class="button" /><a style="color:white;">|</a>
-<buton class="button" onclick="window.location.href='/Randevular/Index'">@localizer["randvular"]</buton>
+<buton class="button" onclick="window.location.href='/RandevuAl/Index'">@localizer["randvular"]</buton>
             </div>
         </form>
     </div>
 </div>
 </body>
 </html>
-

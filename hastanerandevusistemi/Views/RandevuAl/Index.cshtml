@@ -1,10 +1,9 @@
-﻿@model IEnumerable<hastanerandevusistemi.Models.Randevular>
+﻿@model IEnumerable<hastanerandevusistemi.Models.RandevuAl>
 
 @{
-    ViewData["Title"] = "Randevularım";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     .white-text {
         color: white;
@@ -22,52 +21,56 @@
         text-align: center;
     }
 </style>
-
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@localizer["randlar"]</title>
 </head>
 <body style="margin-top:125px;">
-<p>
-    <a class="button" style="color:white" asp-action="Create">@localizer["randal"]</a>
-</p>
+@*     <p>
+        <a class="button" style="color:white" asp-action="Create">@localizer["randal"]</a>
+    </p> *@
 <table class="table">
     <thead>
         <tr>
-            <th style="color:white">
+                <th style="color:white">
                     @localizer["klinik"]
-            </th>
-            <th style="color:white;">
+                </th>
+                <th style="color:white;">
                     @localizer["dok"]
-            </th>
-            <th style="color:white;">
+                </th>
+                <th style="color:white;">
                     @localizer["date"]
+                </th>
+            <th style="color:white;">
+                @localizer["saat"]
             </th>
-@*             <th style="color:white">
-                Kullanıcı
+@*             <th>
+                @Html.DisplayNameFor(model => model.randsahip)
             </th> *@
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td class="white-text">
+                    <td class="white-text">
                 @Html.DisplayFor(modelItem => item.randklinik)
             </td>
-            <td class="white-text">
+                    <td class="white-text">
                 @Html.DisplayFor(modelItem => item.randhekim)
             </td>
-            <td class="white-text">
+                    <td class="white-text">
                 @Html.DisplayFor(modelItem => item.randtarih)
             </td>
-@*             <td class="white-text">
+                    <td class="white-text">
+                @Html.DisplayFor(modelItem => item.randsaat)
+            </td>
+@*                     <td class="white-text">
                 @Html.DisplayFor(modelItem => item.randsahip)
             </td> *@
             <td>
-<a class="button" asp-action="Details" asp-route-id="@item.randID" style="color:white;">@localizer["inc"]</a> <a style="color:white;">|</a>
-<a class="button" asp-action="Delete" asp-route-id="@item.randID" style="color:white;">@localizer["iptal"]</a>
+ <a class="button" asp-action="Details" asp-route-id="@item.randID" style="color:white;">@localizer["inc"]</a> <a style="color:white;">|</a>
+ <a class="button" asp-action="Delete" asp-route-id="@item.randID" style="color:white;">@localizer["iptal"]</a>
             </td>
         </tr>
 }

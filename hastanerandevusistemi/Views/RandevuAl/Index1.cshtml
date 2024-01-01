@@ -1,0 +1,77 @@
+﻿@model IEnumerable<hastanerandevusistemi.Models.RandevuAl>
+
+@{
+    ViewData["Title"] = "Alınmış Randevular";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .white-text {
+        color: white;
+    }
+
+    .button {
+        background-color: rgba(255, 255, 255, .1);
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@localizer["rand"]</title>
+</head>
+<body style="margin-top:125px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="color:white">
+                    @localizer["klinik"]
+                </th>
+                <th style="color:white;">
+                    @localizer["doktor"]
+                </th>
+                <th style="color:white;">
+                    @localizer["tarih"]
+                </th>
+                <th style="color:white;">
+                    @localizer["saat"]
+                </th>
+                <th style="color:white">
+                    @localizer["randsahibi"]
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="white-text">
+                        @Html.DisplayFor(modelItem => item.randklinik)
+                    </td>
+                    <td class="white-text">
+                        @Html.DisplayFor(modelItem => item.randhekim)
+                    </td>
+                    <td class="white-text">
+                        @Html.DisplayFor(modelItem => item.randtarih)
+                    </td>
+                    <td class="white-text">
+                        @Html.DisplayFor(modelItem => item.randsaat)
+                    </td>
+                    <td class="white-text">
+                        @Html.DisplayFor(modelItem => item.randsahip)
+                    </td>
+                    <td>
+                        @*  <a class="button" asp-action="ADetails" asp-route-id="@item.randID" style="color:white;">İncele</a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

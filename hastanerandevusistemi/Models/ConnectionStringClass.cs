@@ -9,5 +9,6 @@ namespace hastanerandevusistemi.Models
         }
         public DbSet<Doktorlar> Doktorlars { get; set; }
         public DbSet<Randevular> Randevulars { get; set; }
+        public DbSet<RandevuAl> randevuAls { get; set; }  
     }
 }

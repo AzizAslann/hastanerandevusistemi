@@ -6,37 +6,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hastanerandevusistemi.Models;
-using Microsoft.AspNetCore.Authorization;
-using hastanerandevusistemi.Models.Domain;
-using hastanerandevusistemi.Models.DTO;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using hastanerandevusistemi.Migrations.ConnectionStringClassMigrations;
 
 namespace hastanerandevusistemi.Controllers
 {
-    public class RandevularController : Controller
+    public class RandevuAlController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public RandevularController(ConnectionStringClass context)
+        public RandevuAlController(ConnectionStringClass context)
         {
             _context = context;
         }
-
-        public async Task<IActionResult> Index2()
+        public async Task<IActionResult> Index1()
         {
-            return _context.Randevulars != null ?
-                        View(await _context.Randevulars.ToListAsync()) :
-                        Problem("Entity set 'ConnectionStringClass.Randevulars'  is null.");
+            return _context.randevuAls != null ?
+                        View(await _context.randevuAls.ToListAsync()) :
+                        Problem("Entity set 'ConnectionStringClass.randevuAls'  is null.");
         }
 
-        // GET: Randevular
+        // GET: RandevuAl
         public async Task<IActionResult> Index()
         {
             // Kullanıcının id'sini al
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // Kullanıcının id'sine ait randevuları getir
-            var userRandevulars = await _context.Randevulars
+            var userRandevulars = await _context.randevuAls
                 .Where(r => r.randsahip == userId)
                 .ToListAsync();
 
@@ -46,22 +44,22 @@ namespace hastanerandevusistemi.Controllers
                 : Problem("Kullanıcıya ait randevu bulunamadı.");
         }
 
-        // GET: Randevular/Details/5
+        // GET: RandevuAl/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Randevulars == null)
+            if (id == null || _context.randevuAls == null)
             {
                 return NotFound();
             }
 
-            var randevular = await _context.Randevulars
+            var randevuAl = await _context.randevuAls
                 .FirstOrDefaultAsync(m => m.randID == id);
-            if (randevular == null)
+            if (randevuAl == null)
             {
                 return NotFound();
             }
 
-            return View(randevular);
+            return View(randevuAl);
         }
 
         [HttpGet]
@@ -79,11 +77,11 @@ namespace hastanerandevusistemi.Controllers
             return Json(doktorlar);
         }
 
-        // GET: Randevular/Create
         [Authorize]
+        // GET: RandevuAl/Create
         public IActionResult Create()
         {
-            var klinikler = _context.Doktorlars.Select(d=>d.klinik).Distinct().ToList();
+            var klinikler = _context.Doktorlars.Select(d => d.klinik).Distinct().ToList();
             ViewBag.Klinikler = new SelectList(klinikler);
 
             //var aktifdoktorlar =_context.Doktorlars.Where(p=>p.durum=="Aktif").ToList();
@@ -97,7 +95,7 @@ namespace hastanerandevusistemi.Controllers
             //ViewBag.DoktorlarDropdown = dropdownData;
 
 
-            var randevuModel = new Randevular
+            var randevuModel = new RandevuAl
             {
                 // Giriş yapan kullanıcının id'sini otomatik olarak randsahip alanına atayalım
                 randsahip = User.FindFirstValue(ClaimTypes.NameIdentifier)
@@ -106,25 +104,27 @@ namespace hastanerandevusistemi.Controllers
             return View(randevuModel);
         }
 
-        // POST: Randevular/Create
+        // POST: RandevuAl/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("randID,randklinik,randhekim,randtarih,randsahip")] Randevular randevular)
+        public async Task<IActionResult> Create([Bind("randID,randklinik,randhekim,randtarih,randsaat,randsahip")] RandevuAl randevuAl)
         {
+
             // Eğer kullanıcı doğrudan URL üzerinden Create action'ına erişirse, randsahip alanını kontrol et
-            if (randevular.randsahip != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            if (randevuAl.randsahip != User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 // Kullanıcı izni yok, giriş yapmış kullanıcıya ait bir randevu olmalı
                 return Forbid();
             }
 
             // Aynı doktor, tarih ve saatte randevu olup olmadığını kontrol et
-            bool isDuplicate = await _context.Randevulars
-                .AnyAsync(r => r.randhekim == randevular.randhekim &&
-                               r.randtarih == randevular.randtarih);
+            bool isDuplicate = await _context.randevuAls
+                .AnyAsync(r => r.randhekim == randevuAl.randhekim &&
+                               r.randtarih == randevuAl.randtarih &&
+                               r.randsaat == randevuAl.randsaat);
 
             if (isDuplicate)
             {
@@ -134,42 +134,42 @@ namespace hastanerandevusistemi.Controllers
                 ViewBag.Klinikler = new SelectList(klinikler);
                 var doktorlar = _context.Doktorlars.Select(f => f.isim).ToList();
                 ViewBag.Doktorlar = new SelectList(doktorlar);
-                return View(randevular);
+                return View(randevuAl);
             }
 
             if (ModelState.IsValid)
             {
-                _context.Add(randevular);
+                _context.Add(randevuAl);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(randevular);
+            return View(randevuAl);
         }
 
-        // GET: Randevular/Edit/5
+        // GET: RandevuAl/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Randevulars == null)
+            if (id == null || _context.randevuAls == null)
             {
                 return NotFound();
             }
 
-            var randevular = await _context.Randevulars.FindAsync(id);
-            if (randevular == null)
+            var randevuAl = await _context.randevuAls.FindAsync(id);
+            if (randevuAl == null)
             {
                 return NotFound();
             }
-            return View(randevular);
+            return View(randevuAl);
         }
 
-        // POST: Randevular/Edit/5
+        // POST: RandevuAl/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("randID,randklinik,randhekim,randtarih,randsahip")] Randevular randevular)
+        public async Task<IActionResult> Edit(int id, [Bind("randID,randklinik,randhekim,randtarih,randsaat,randsahip")] RandevuAl randevuAl)
         {
-            if (id != randevular.randID)
+            if (id != randevuAl.randID)
             {
                 return NotFound();
             }
@@ -178,12 +178,12 @@ namespace hastanerandevusistemi.Controllers
             {
                 try
                 {
-                    _context.Update(randevular);
+                    _context.Update(randevuAl);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RandevularExists(randevular.randID))
+                    if (!RandevuAlExists(randevuAl.randID))
                     {
                         return NotFound();
                     }
@@ -194,49 +194,49 @@ namespace hastanerandevusistemi.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(randevular);
+            return View(randevuAl);
         }
 
-        // GET: Randevular/Delete/5
+        // GET: RandevuAl/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Randevulars == null)
+            if (id == null || _context.randevuAls == null)
             {
                 return NotFound();
             }
 
-            var randevular = await _context.Randevulars
+            var randevuAl = await _context.randevuAls
                 .FirstOrDefaultAsync(m => m.randID == id);
-            if (randevular == null)
+            if (randevuAl == null)
             {
                 return NotFound();
             }
 
-            return View(randevular);
+            return View(randevuAl);
         }
 
-        // POST: Randevular/Delete/5
+        // POST: RandevuAl/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Randevulars == null)
+            if (_context.randevuAls == null)
             {
-                return Problem("Entity set 'ConnectionStringClass.Randevulars'  is null.");
+                return Problem("Entity set 'ConnectionStringClass.randevuAls'  is null.");
             }
-            var randevular = await _context.Randevulars.FindAsync(id);
-            if (randevular != null)
+            var randevuAl = await _context.randevuAls.FindAsync(id);
+            if (randevuAl != null)
             {
-                _context.Randevulars.Remove(randevular);
+                _context.randevuAls.Remove(randevuAl);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RandevularExists(int id)
+        private bool RandevuAlExists(int id)
         {
-          return (_context.Randevulars?.Any(e => e.randID == id)).GetValueOrDefault();
+          return (_context.randevuAls?.Any(e => e.randID == id)).GetValueOrDefault();
         }
     }
 }
